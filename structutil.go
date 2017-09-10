@@ -23,3 +23,17 @@ func StructToMap(v interface{}) *map[string]interface{} {
 	}
 	return &structmap
 }
+
+//CopyStruct : Copies src struct fields to dest struct where both struct have elements with same names but different types
+func CopyStruct(src interface{}, dest interface{}) {
+
+	srcFields := reflect.ValueOf(src).Elem()
+	newStructValue := reflect.ValueOf(dest)
+
+	for count := 0; count < srcFields.NumField(); count++ {
+		srcField := srcFields.Field(count)
+		fieldname := srcFields.Type().Field(count).Name
+		newField := newStructValue.Elem().FieldByName(fieldname)
+		newField.SetString(fmt.Sprintf("%v", srcField.Interface()))
+	}
+}
