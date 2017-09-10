@@ -24,9 +24,9 @@ func StructToMap(v interface{}) *map[string]interface{} {
 	return &structmap
 }
 
-// CopyToAllStringStruct : Copies src struct fields to dest struct
+// CopyToStringStruct : Copies src struct fields to dest struct
 // Both src and dest structs have elements with same names but different types
-func CopyToAllStringStruct(src interface{}, dest interface{}) {
+func CopyToStringStruct(src interface{}, dest interface{}) {
 
 	srcFields := reflect.ValueOf(src).Elem()
 	newStructValue := reflect.ValueOf(dest)
